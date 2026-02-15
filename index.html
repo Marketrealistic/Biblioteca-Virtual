@@ -126,12 +126,13 @@
             .libro {
                 width: 90%;
                 margin: 10px 0;
-                padding: 12px;  /* ligeramente mayor para equilibrio */
+                padding: 12px;
             }
 
             .libro img {
-                max-height: 200px;  /* imagen un poco más grande en móviles */
-                object-fit: cover;
+                width: 100%;        /* ocupa todo el ancho de la tarjeta */
+                height: auto;       /* mantiene proporción natural */
+                max-height: none;   /* sin límite de altura */
                 margin-bottom: 8px;
             }
 
