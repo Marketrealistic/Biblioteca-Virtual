@@ -36,7 +36,6 @@
             max-width: 800px;
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
@@ -103,6 +102,36 @@
             background: #2980b9;
         }
 
+        /* Media queries para dispositivos móviles */
+        @media (max-width: 600px) {
+            .logo-fijo {
+                width: 100px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .bienvenida {
+                padding: 20px 10px;
+            }
+
+            .bienvenida h2 {
+                font-size: 20px;
+            }
+
+            .contenedor {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .libro {
+                width: 90%;
+                margin: 10px 0;
+            }
+
+            .libro p {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,6 +158,3 @@
 
 </body>
 </html>
-
-
-
