@@ -9,8 +9,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
             text-align: center;
-
-            /* Fondo de la página con imagen Loto.png */
             background-image: url('Fondo/Loto.png');
             background-size: cover;
             background-position: center;
@@ -103,7 +101,7 @@
             background: #2980b9;
         }
 
-        /* Media queries para móviles */
+        /* Ajustes solo para móviles */
         @media (max-width: 600px) {
             .logo-fijo {
                 width: 100px;
@@ -128,11 +126,11 @@
             .libro {
                 width: 90%;
                 margin: 10px 0;
-                padding: 10px;
+                padding: 12px;  /* ligeramente mayor para equilibrio */
             }
 
             .libro img {
-                max-height: 180px;  /* reduce altura de la imagen en móvil */
+                max-height: 200px;  /* imagen un poco más grande en móviles */
                 object-fit: cover;
                 margin-bottom: 8px;
             }
@@ -167,6 +165,3 @@
 
 </body>
 </html>
-
-
-
