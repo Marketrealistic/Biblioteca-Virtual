@@ -102,43 +102,49 @@
         }
 
         /* Ajustes solo para móviles */
-        @media (max-width: 600px) {
-            .logo-fijo {
-                width: 100px;
-                top: 5px;
-                left: 5px;
-            }
+       @media (max-width: 600px) {
+    /* Ajuste del logo */
+    .logo-fijo {
+        width: 100px;
+        top: 5px;
+        left: 15px;   /* movemos un poquito a la derecha */
+    }
 
-            .bienvenida {
-                padding: 20px 10px;
-                font-size: 16px;
-            }
+    /* Ajuste del banner de bienvenida */
+    .bienvenida {
+        padding: 20px 10px;
+        font-size: 16px;
+        margin-left: 10px;  /* pequeño desplazamiento a la derecha */
+        margin-right: 10px;
+    }
 
-            .bienvenida h2 {
-                font-size: 20px;
-            }
+    .bienvenida h2 {
+        font-size: 20px;
+    }
 
-            .contenedor {
-                flex-direction: column;
-                align-items: center;
-            }
+    .contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
 
-            .libro {
-                width: 90%;
-                margin: 10px 0;
-                padding: 12px;
-            }
+    .libro {
+        width: 90%;
+        margin: 10px 0;
+        padding: 12px;
+    }
 
-            .libro img {
-                width: 100%;
-                height: auto;
-                max-height: none;
-                margin-bottom: 8px;
-            }
+    .libro img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        margin-bottom: 8px;
+    }
 
-            .libro p {
-                font-size: 12px;
-            }
+    .libro p {
+        font-size: 12px;
+    }
+}
+
         }
     </style>
 </head>
@@ -166,3 +172,4 @@
 
 </body>
 </html>
+
