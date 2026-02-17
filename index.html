@@ -14,6 +14,11 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+
+            /* Piso hasta abajo */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .logo-fijo {
@@ -46,14 +51,14 @@
             to { opacity: 1; }
         }
 
-        /* Contenedor de libros en grid */
         .contenedor {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin: 20px auto;
+            margin: 20px auto 40px auto;
             max-width: 1200px;
             justify-items: center;
+            flex-grow: 1;
         }
 
         .libro {
@@ -105,6 +110,32 @@
             background: #2980b9;
         }
 
+        /* Botón de música flotante estilo elegante */
+        #botonMusica {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        #botonMusica:hover {
+            background: rgba(41, 128, 185, 0.9);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 600px) {
             .logo-fijo {
                 width: 100px;
@@ -142,19 +173,36 @@
             .libro p {
                 font-size: 12px;
             }
+
+            #botonMusica {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Música de fondo -->
+    <audio id="musicaFondo" autoplay loop>
+        <source src="audio/Musica_fondo.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <!-- Botón flotante para pausar/reproducir música -->
+    <button id="botonMusica" onclick="toggleAudio()">🔊</button>
+
+    <!-- Logo -->
     <img class="logo-fijo" src="Fondo/Escuela.png" alt="Logo">
 
+    <!-- Banner de bienvenida -->
     <div class="bienvenida">
         <h2>📚 BIBLIOTECA VIRTUAL</h2>
     </div>
 
+    <!-- Contenedor de libros -->
     <div class="contenedor">
-        <!-- Libro Ken Wilber -->
         <div class="libro">
             <img src="Libros/gracia_y_coraje.jpg" alt="Gracia y Coraje">
             <h3>Gracia y Coraje</h3>
@@ -164,6 +212,20 @@
             </a>
         </div>
     </div>
+
+    <script>
+        function toggleAudio() {
+            var audio = document.getElementById("musicaFondo");
+            var boton = document.getElementById("botonMusica");
+            if(audio.paused){
+                audio.play();
+                boton.textContent = '🔊';
+            } else {
+                audio.pause();
+                boton.textContent = '🔈';
+            }
+        }
+    </script>
 
 </body>
 </html>
