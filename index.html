@@ -92,7 +92,7 @@ body {
     to { transform: translateY(-8px); }
 }
 
-/* Botón Reprodúceme */
+/* Botón Escúchame */
 #inicioMusica {
     padding: 8px 16px;
     font-size: 14px;
@@ -103,7 +103,7 @@ body {
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.2s, background 0.3s;
+    transition: transform 0.2s, background 0.3s, opacity 0.5s;
 }
 #inicioMusica:hover { transform: scale(1.05); background: #c0392b; }
 
@@ -156,7 +156,7 @@ body {
 
 <!-- Panel tipo regalo -->
 <div id="panelMusica">
-    <button id="inicioMusica" onclick="iniciarMusica()">¡Reprodúceme!</button>
+    <button id="inicioMusica" onclick="iniciarMusica()">¡Escúchame!</button>
     <button id="botonMusica" onclick="toggleAudio()">🔊</button>
     <input type="range" id="volumenControl" min="0" max="1" step="0.01" value="0.5" onchange="cambiarVolumen()">
 </div>
@@ -186,7 +186,10 @@ var volumenControl = document.getElementById("volumenControl");
 
 function iniciarMusica() {
     audio.play();
-    botonInicio.style.display = "none";
+    // efecto de desvanecimiento
+    botonInicio.style.opacity = 0;
+    setTimeout(() => { botonInicio.style.display = "none"; }, 500);
+
     botonFlotante.style.display = "flex";
     volumenControl.style.display = "block";
 }
