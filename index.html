@@ -25,3 +25,161 @@
             height: auto;
             z-index: 1000;
         }
+
+        /* Banner de bienvenida */
+        .bienvenida {
+            background: rgba(52, 152, 219, 0.85);
+            color: white;
+            padding: 30px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        .bienvenida h2 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Contenedor de libros en grid responsive */
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px; /* ancho máximo para PC */
+            justify-items: center;
+        }
+
+        .libro {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .libro:hover {
+            transform: translateY(-5px);
+        }
+
+        .libro img {
+            width: 100%;
+            max-height: 250px; /* evita que la imagen empuje demasiado el botón */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .libro h3 {
+            margin: 5px 0;
+        }
+
+        .libro p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .libro button {
+            width: 100%;
+            padding: 10px;
+            background: #3498db;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .libro button:hover {
+            background: #2980b9;
+        }
+
+        /* Ajustes solo para móviles */
+        @media (max-width: 600px) {
+            .logo-fijo {
+                width: 100px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .bienvenida {
+                padding: 20px 10px;
+                font-size: 16px;
+            }
+
+            .bienvenida h2 {
+                font-size: 20px;
+                margin-left: 15px;
+            }
+
+            .contenedor {
+                grid-template-columns: 1fr;
+            }
+
+            .libro {
+                width: 90%;
+                margin: 10px 0;
+                padding: 12px;
+            }
+
+            .libro img {
+                width: 100%;
+                height: auto;
+                max-height: none;
+                margin-bottom: 8px;
+            }
+
+            .libro p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo en esquina superior izquierda -->
+    <img class="logo-fijo" src="Fondo/Escuela.png" alt="Logo">
+
+    <!-- Banner de bienvenida -->
+    <div class="bienvenida">
+        <h2>📚 BIBLIOTECA VIRTUAL</h2>
+    </div>
+
+    <div class="contenedor">
+        <!-- Libro Gracia y Coraje -->
+        <div class="libro">
+            <img src="Libros/gracia_y_coraje.jpg" alt="Gracia y Coraje">
+            <h3>Gracia y Coraje</h3>
+            <p>Autor: Ken Wilber</p>
+            <a href="https://e.pcloud.link/publink/show?code=XZQJ43ZuB9j90ho1L8VgXowljU6d5xgRe1y" target="_blank">
+                <button>Ver libro</button>
+            </a>
+        </div>
+
+        <!-- Puedes duplicar más libros aquí -->
+        <div class="libro">
+            <img src="Libros/otro_libro.jpg" alt="Otro Libro">
+            <h3>Otro Libro</h3>
+            <p>Autor: Autor Ejemplo</p>
+            <a href="#" target="_blank">
+                <button>Ver libro</button>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
