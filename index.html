@@ -11,7 +11,6 @@
     --azul-oscuro: #2980b9;
     --rojo: #e74c3c;
     --rojo-oscuro: #c0392b;
-    --volumen-inicial: 0.5;
 }
 
 * { box-sizing: border-box; }
@@ -159,7 +158,7 @@ body {
     color: white;
     border: none;
     font-size: 20px;
-    display: none; /* oculto por defecto, se muestra al iniciar música */
+    display: none;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -181,7 +180,7 @@ body {
 
     .bienvenida {
         padding: 25px 10px;
-        margin: 70px auto 10px auto; /* espacio para el logo */
+        margin: 70px auto 10px auto;
         font-size: 16px;
     }
     .bienvenida h2 { font-size: 20px; }
@@ -206,7 +205,7 @@ body {
 
     .contenedor { grid-template-columns: 1fr; }
     .libro { width: 90%; margin: 10px 0; padding: 12px; }
-    .libro img { width: 100%; height: auto; max-height: none; margin-bottom: 8px; }
+    .libro img { width: 100%; height: auto; max-height: 200px; object-fit: cover; margin-bottom: 8px; }
     .libro p { font-size: 12px; }
 }
 </style>
@@ -253,12 +252,8 @@ body {
 
     function iniciarMusica() {
         audio.play();
-
-        // Desvanecer y ocultar el botón de inicio
         botonInicio.style.opacity = 0;
         setTimeout(() => { botonInicio.style.display = "none"; }, 500);
-
-        // Mostrar controles
         botonFlotante.style.display = "flex";
         volumenControl.style.display = "block";
     }
