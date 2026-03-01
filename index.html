@@ -26,6 +26,31 @@
   @keyframes floatPanel { from{transform:translateY(0)} to{transform:translateY(-6px)} }
   @keyframes card-in { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
+  /* CHERRY BLOSSOM */
+  #cherryBg { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  @keyframes petalDrop {
+    0%   { transform:translateY(0) rotate(0deg) translateX(0); opacity:0.8; }
+    25%  { transform:translateY(120px) rotate(45deg) translateX(-20px); opacity:0.7; }
+    50%  { transform:translateY(260px) rotate(100deg) translateX(15px); opacity:0.5; }
+    75%  { transform:translateY(400px) rotate(160deg) translateX(-10px); opacity:0.3; }
+    100% { transform:translateY(560px) rotate(220deg) translateX(5px); opacity:0; }
+  }
+  @keyframes branchSway {
+    0%,100% { transform-origin:right bottom; transform:rotate(0deg); }
+    50%      { transform-origin:right bottom; transform:rotate(1.5deg); }
+  }
+  @keyframes flowerSway {
+    0%,100% { transform:rotate(-2deg) scale(1); }
+    50%      { transform:rotate(2deg) scale(1.03); }
+  }
+  .cherry-branch { animation:branchSway 8s ease-in-out infinite; }
+  .cherry-flower { animation:flowerSway 5s ease-in-out infinite; transform-origin:center; }
+  .cherry-flower:nth-child(2n)  { animation-duration:6.5s; animation-delay:0.8s; }
+  .cherry-flower:nth-child(3n)  { animation-duration:7s;   animation-delay:1.4s; }
+  .cherry-flower:nth-child(4n)  { animation-duration:5.5s; animation-delay:0.4s; }
+  .falling-petal { position:absolute; animation:petalDrop linear infinite; opacity:0; }
+
+
   /* LOTUS BACKGROUND */
   #lotusBg {
     position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -385,6 +410,161 @@
 </svg>
 
 
+
+<!-- CHERRY BLOSSOM SVG -->
+<svg id="cherryBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="flowerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5e098" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#c9a84c" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b6340" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbe0" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.8"/>
+    </radialGradient>
+  </defs>
+
+  <g class="cherry-branch" opacity="0.55">
+
+    <!-- ══ RAMA PRINCIPAL — sube desde esquina inferior derecha ══ -->
+    <path d="M1440,900 C1380,820 1340,750 1300,660 C1260,570 1280,490 1240,400 C1210,330 1170,290 1120,220 C1090,175 1060,140 1020,90"
+          stroke="#a07830" stroke-width="14" fill="none" stroke-linecap="round"/>
+
+    <!-- Rama secundaria 1 — se abre hacia la derecha arriba -->
+    <path d="M1240,400 C1290,370 1340,330 1380,280 C1410,240 1430,200 1440,160"
+          stroke="#a07830" stroke-width="9" fill="none" stroke-linecap="round"/>
+
+    <!-- Rama secundaria 2 -->
+    <path d="M1300,660 C1340,630 1380,600 1420,560 C1440,540 1440,510 1440,490"
+          stroke="#8b6340" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+    <!-- Rama secundaria 3 — se extiende hacia arriba izquierda -->
+    <path d="M1170,290 C1140,260 1110,230 1080,195 C1060,170 1050,145 1030,115"
+          stroke="#8b6340" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+    <!-- Ramita fina 1 -->
+    <path d="M1380,280 C1390,250 1400,220 1410,190 C1420,165 1435,145 1440,120"
+          stroke="#7a5520" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+    <!-- Ramita fina 2 -->
+    <path d="M1340,330 C1310,310 1290,285 1270,255"
+          stroke="#7a5520" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Ramita fina 3 -->
+    <path d="M1120,220 C1150,200 1180,175 1200,145"
+          stroke="#7a5520" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- Ramita fina 4 -->
+    <path d="M1420,560 C1435,530 1440,500 1438,470"
+          stroke="#7a5520" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+    <!-- ══ FLORES ══ -->
+    <!-- Flor helper macro: 5 pétalos elípticos + centro -->
+
+    <!-- Flor 1 -->
+    <g class="cherry-flower" transform="translate(1030,110)">
+      <ellipse cx="0" cy="-11" rx="7" ry="12" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.9"/>
+      <ellipse cx="0" cy="-11" rx="7" ry="12" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-11" rx="7" ry="12" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.9"/>
+      <ellipse cx="0" cy="-11" rx="7" ry="12" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.85"/>
+      <ellipse cx="0" cy="-11" rx="7" ry="12" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.9"/>
+      <circle cx="0" cy="0" r="4" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 2 -->
+    <g class="cherry-flower" transform="translate(1200,148)" style="animation-delay:0.5s">
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.88"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.82"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.88"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.82"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.88"/>
+      <circle cx="0" cy="0" r="3.5" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 3 -->
+    <g class="cherry-flower" transform="translate(1410,125)" style="animation-delay:1s">
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(36)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(108)" opacity="0.9"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(180)" opacity="0.85"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(252)" opacity="0.9"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(324)" opacity="0.85"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 4 -->
+    <g class="cherry-flower" transform="translate(1270,258)" style="animation-delay:0.3s">
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.9"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.9"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.85"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="11" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.9"/>
+      <circle cx="0" cy="0" r="3.5" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 5 -->
+    <g class="cherry-flower" transform="translate(1390,195)" style="animation-delay:1.5s">
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(20)"  opacity="0.8"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(92)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(164)" opacity="0.8"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(236)" opacity="0.85"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(308)" opacity="0.8"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 6 -->
+    <g class="cherry-flower" transform="translate(1165,295)" style="animation-delay:0.7s">
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.88"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.82"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.88"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.82"/>
+      <ellipse cx="0" cy="-9" rx="6" ry="10" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.88"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 7 -->
+    <g class="cherry-flower" transform="translate(1430,480)" style="animation-delay:2s">
+      <ellipse cx="0" cy="-9" rx="5" ry="10" fill="url(#flowerGrad)" transform="rotate(36)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-9" rx="5" ry="10" fill="url(#flowerGrad)" transform="rotate(108)" opacity="0.9"/>
+      <ellipse cx="0" cy="-9" rx="5" ry="10" fill="url(#flowerGrad)" transform="rotate(180)" opacity="0.85"/>
+      <ellipse cx="0" cy="-9" rx="5" ry="10" fill="url(#flowerGrad)" transform="rotate(252)" opacity="0.9"/>
+      <ellipse cx="0" cy="-9" rx="5" ry="10" fill="url(#flowerGrad)" transform="rotate(324)" opacity="0.85"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 8 -->
+    <g class="cherry-flower" transform="translate(1350,640)" style="animation-delay:1.2s">
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.82"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.78"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.82"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.78"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.82"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 9 — capullo pequeño -->
+    <g class="cherry-flower" transform="translate(1080,195)" style="animation-delay:0.9s">
+      <ellipse cx="0" cy="-7" rx="4" ry="8" fill="url(#flowerGrad)" transform="rotate(0)"   opacity="0.75"/>
+      <ellipse cx="0" cy="-7" rx="4" ry="8" fill="url(#flowerGrad)" transform="rotate(72)"  opacity="0.7"/>
+      <ellipse cx="0" cy="-7" rx="4" ry="8" fill="url(#flowerGrad)" transform="rotate(144)" opacity="0.75"/>
+      <ellipse cx="0" cy="-7" rx="4" ry="8" fill="url(#flowerGrad)" transform="rotate(216)" opacity="0.7"/>
+      <ellipse cx="0" cy="-7" rx="4" ry="8" fill="url(#flowerGrad)" transform="rotate(288)" opacity="0.75"/>
+      <circle cx="0" cy="0" r="2.5" fill="url(#centerGrad)"/>
+    </g>
+
+    <!-- Flor 10 -->
+    <g class="cherry-flower" transform="translate(1310,490)" style="animation-delay:1.8s">
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(20)"  opacity="0.8"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(92)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(164)" opacity="0.8"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(236)" opacity="0.85"/>
+      <ellipse cx="0" cy="-8" rx="5" ry="9" fill="url(#flowerGrad)" transform="rotate(308)" opacity="0.8"/>
+      <circle cx="0" cy="0" r="3" fill="url(#centerGrad)"/>
+    </g>
+
+  </g>
+</svg>
+
 <!-- PANEL MÚSICA DESKTOP -->
 <div id="panelMusica">
   <div class="music-label">♪ Ambiente</div>
@@ -509,6 +689,35 @@
     panelCats.classList.remove('slide-out');
     window.scrollTo(0,0);
   }
+
+
+  // ══ PÉTALOS CAYENDO ══
+  const cherryContainer = document.getElementById('cherryBg');
+  function crearPetalo() {
+    const ns = 'http://www.w3.org/2000/svg';
+    // Crear SVG pequeño flotante
+    const div = document.createElement('div');
+    div.className = 'falling-petal';
+    const startX = 1050 + Math.random() * 390; // zona derecha
+    const startY = 80  + Math.random() * 500;
+    const size   = 5   + Math.random() * 7;
+    const dur    = 6   + Math.random() * 8;
+    const delay  = Math.random() * 10;
+    div.style.cssText = `left:${startX}px; top:${startY}px; animation-duration:${dur}s; animation-delay:${delay}s; opacity:0;`;
+    div.innerHTML = `<svg width="${size*2}" height="${size*2}" viewBox="-10 -10 20 20" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.65" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.65" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="2.5" fill="#f5e098" opacity="0.8"/>
+    </svg>`;
+    document.body.appendChild(div);
+    setTimeout(() => div.remove(), (dur + delay) * 1000 + 1000);
+  }
+  // Crear pétalos cada 1.5s
+  for(let i = 0; i < 12; i++) setTimeout(crearPetalo, i * 1500);
+  setInterval(crearPetalo, 1500);
 
   // ══════════════════════
   // PARTÍCULAS
