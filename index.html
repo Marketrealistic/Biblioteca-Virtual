@@ -393,7 +393,9 @@
       card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
     });
     // Mostrar/ocultar buscador
-    document.querySelector('.search-wrap').style.display = cat === 'all' ? '' : 'none';
+   document.querySelector('.search-wrap').style.display = cat === 'all' ? '' : 'none';
+document.querySelector('.hero').style.display = cat === 'all' ? '' : 'none';
+document.querySelector('.ornamental-divider').style.display = cat === 'all' ? '' : 'none';
   }
 
   function setView(mode) {
@@ -405,6 +407,7 @@
 </script>
 </body>
 </html>
+
 
 
 
