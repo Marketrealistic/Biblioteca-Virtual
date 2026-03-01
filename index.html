@@ -206,19 +206,27 @@
   ::-webkit-scrollbar-track { background:#1a0f05; }
   ::-webkit-scrollbar-thumb { background:rgba(201,168,76,0.3); border-radius:3px; }
 
+  /* ══════════════════════════════════════
+     OCULTAR ELEMENTOS MÓVIL EN DESKTOP
+     (debe ir ANTES del @media query)
+     ══════════════════════════════════════ */
+  .mobile-welcome,
+  .mobile-books-screen,
+  #panelMusicaMobile { display:none; }
+
   /* ════════════════════════════════
      MÓVIL — experiencia completa
      ════════════════════════════════ */
   @media (max-width:480px) {
 
     /* Ocultar layout desktop */
-    .sidebar { display:none; }
-    .main { display:none; }
-    #panelMusica { display:none; }
+    .sidebar { display:none !important; }
+    .main { display:none !important; }
+    #panelMusica { display:none !important; }
 
     /* PANTALLA BIENVENIDA MÓVIL */
     .mobile-welcome {
-      display:flex;
+      display:flex !important;
       flex-direction:column;
       align-items:center;
       min-height:100vh;
@@ -295,7 +303,11 @@
       position:relative; z-index:1;
       padding-bottom:90px;
     }
-    .mobile-books-screen.active { display:flex; }
+    .mobile-books-screen.active { display:flex !important; }
+
+    /* Ocultar bienvenida cuando libros está activo */
+    .mobile-books-screen.active ~ .mobile-welcome,
+    #mobileBooksScreen.active ~ #mobileWelcome { display:none !important; }
 
     /* Fondo loto en pantalla libros */
     .mobile-loto {
@@ -336,7 +348,7 @@
     /* Panel música móvil */
     #panelMusicaMobile {
       position:fixed; bottom:0; left:0; right:0;
-      display:flex; flex-direction:row; justify-content:center; align-items:center;
+      display:flex !important; flex-direction:row; justify-content:center; align-items:center;
       gap:14px; padding:10px 16px;
       background:linear-gradient(145deg,#2a1a0a,#1a0f05);
       border-top:1px solid rgba(201,168,76,0.2);
@@ -359,11 +371,6 @@
     }
     #volumenM { display:none; width:90px; accent-color:var(--gold); }
   }
-
-  /* Ocultar elementos móvil en desktop */
-  .mobile-welcome,
-  .mobile-books-screen,
-  #panelMusicaMobile { display:none; }
 
 </style>
 </head>
