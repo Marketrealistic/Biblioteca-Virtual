@@ -49,11 +49,13 @@
 
   /* MUSIC PANEL */
   #panelMusica {
-    position:fixed; bottom:20px; left:20px;
-    display:flex; flex-direction:row; align-items:center; gap:8px;
+    position:fixed; bottom:20px; left:0;
+    width:240px;
+    display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px;
     background:linear-gradient(145deg,#2a1a0a,#1a0f05);
     border:1px solid rgba(201,168,76,0.3);
-    padding:8px 14px; border-radius:10px;
+    border-left:none; border-bottom:none;
+    padding:10px 16px; border-radius:0 10px 0 0;
     box-shadow:0 4px 18px rgba(0,0,0,0.5);
     z-index:1000;
   }
