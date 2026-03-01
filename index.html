@@ -392,6 +392,8 @@
     document.querySelectorAll('.book-card').forEach(card => {
       card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
     });
+    // Mostrar/ocultar buscador
+    document.querySelector('.search-wrap').style.display = cat === 'all' ? '' : 'none';
   }
 
   function setView(mode) {
@@ -403,5 +405,6 @@
 </script>
 </body>
 </html>
+
 
 
