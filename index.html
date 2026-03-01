@@ -26,10 +26,14 @@
   @keyframes floatPanel { from{transform:translateY(0)} to{transform:translateY(-6px)} }
   @keyframes card-in { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-
-
-  
-
+  /* LOTO MÓVIL */
+  @media(max-width:600px) {
+    #lotusBg img {
+      width: 90% !important;
+      margin-left: 0 !important;
+      opacity: 0.07 !important;
+    }
+  }
 
   /* PARTICLES */
   #particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
@@ -294,19 +298,12 @@
 ">
   <img src="Fondo/LotoN.png" style="
     width:52%; max-width:650px;
-    opacity:0.18;
+    opacity:0.10;
     mix-blend-mode:screen;
     filter:brightness(1.2) contrast(1.1);
     margin-left:18%;
   "/>
 </div>
-
-
-
-
-
-
-
 
 <!-- PANEL MÚSICA DESKTOP -->
 <div id="panelMusica">
@@ -421,7 +418,6 @@
       `).join('');
     }
 
-    // Animación: cats sale por la izquierda, libros entra por la derecha
     panelCats.classList.add('slide-out');
     panelBooks.classList.add('slide-in');
     panelBooks.scrollTop = 0;
@@ -432,8 +428,6 @@
     panelCats.classList.remove('slide-out');
     window.scrollTo(0,0);
   }
-
-
 
   // ══════════════════════
   // PARTÍCULAS
