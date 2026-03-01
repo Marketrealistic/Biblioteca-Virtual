@@ -287,148 +287,143 @@
 </audio>
 
 <div id="particles"></div>
-<!-- BLUE LOTUS SVG -->
-<svg id="lotusBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;opacity:0.22;">
+<!-- GOLDEN LOTUS SVG -->
+<svg id="lotusBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;opacity:0.13;">
   <defs>
-    <radialGradient id="petalBlue" cx="50%" cy="70%" r="55%">
-      <stop offset="0%" stop-color="#a8d8f0" stop-opacity="1"/>
-      <stop offset="40%" stop-color="#5ba3cc" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#1a4a7a" stop-opacity="0.6"/>
+    <!-- Pétalo exterior blanco nacarado con borde dorado -->
+    <radialGradient id="petalOuter" cx="50%" cy="80%" r="60%">
+      <stop offset="0%"   stop-color="#fffdf0" stop-opacity="1"/>
+      <stop offset="40%"  stop-color="#f0e8c8" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.5"/>
     </radialGradient>
-    <radialGradient id="petalBlue2" cx="50%" cy="60%" r="50%">
-      <stop offset="0%" stop-color="#d0eeff" stop-opacity="1"/>
-      <stop offset="50%" stop-color="#7bbfe0" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#2a6090" stop-opacity="0.5"/>
+    <!-- Pétalo interno más luminoso -->
+    <radialGradient id="petalInner" cx="50%" cy="75%" r="55%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="35%"  stop-color="#fdf5dc" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#e8c97e" stop-opacity="0.7"/>
     </radialGradient>
-    <radialGradient id="petalBlue3" cx="50%" cy="60%" r="50%">
-      <stop offset="0%" stop-color="#e8f6ff" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#4a90c0" stop-opacity="0.6"/>
-    </radialGradient>
-    <radialGradient id="centerBlue" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffe8a0" stop-opacity="1"/>
-      <stop offset="60%" stop-color="#c9a84c" stop-opacity="0.9"/>
+    <!-- Centro dorado brillante -->
+    <radialGradient id="centerGold" cx="50%" cy="40%" r="60%">
+      <stop offset="0%"   stop-color="#fffbe0" stop-opacity="1"/>
+      <stop offset="40%"  stop-color="#f5d060" stop-opacity="1"/>
+      <stop offset="80%"  stop-color="#c9a84c" stop-opacity="0.9"/>
       <stop offset="100%" stop-color="#8b6340" stop-opacity="0.7"/>
     </radialGradient>
-    <radialGradient id="leafGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#2a5a3a" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#1a3a28" stop-opacity="0.4"/>
+    <!-- Hojas doradas laterales -->
+    <radialGradient id="leafGold" cx="50%" cy="60%" r="55%">
+      <stop offset="0%"   stop-color="#f5e098" stop-opacity="0.8"/>
+      <stop offset="60%"  stop-color="#c9a84c" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7a5520" stop-opacity="0.3"/>
     </radialGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <!-- Reflejo inferior -->
+    <radialGradient id="reflectGrad" cx="50%" cy="20%" r="60%">
+      <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#3e2712" stop-opacity="0.1"/>
+    </radialGradient>
+    <!-- Brillo suave -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="innerGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
-  <!-- ══════════════════════════════
-       LOTO GRANDE — centro derecha
-  ══════════════════════════════ -->
-  <g transform="translate(1100, 580)" filter="url(#glow)">
-    <!-- Hoja de agua grande -->
-    <ellipse cx="60" cy="80" rx="120" ry="55" fill="url(#leafGrad)" opacity="0.7"/>
-    <path d="M60,80 C60,20 62,22 60,80" stroke="#3a8a50" stroke-width="1" fill="none" opacity="0.4"/>
-    <!-- Venas de la hoja -->
-    <path d="M60,80 L160,55" stroke="#3a8a50" stroke-width="0.8" opacity="0.35"/>
-    <path d="M60,80 L-40,60" stroke="#3a8a50" stroke-width="0.8" opacity="0.35"/>
-    <path d="M60,80 L130,95" stroke="#3a8a50" stroke-width="0.6" opacity="0.3"/>
-    <path d="M60,80 L-10,100" stroke="#3a8a50" stroke-width="0.6" opacity="0.3"/>
+  <!-- ══════════════════════════════════════
+       LOTO DORADO CENTRAL
+  ══════════════════════════════════════ -->
+  <g transform="translate(720, 480)" filter="url(#softGlow)">
 
-    <!-- Tallo -->
-    <path d="M0,0 C-5,30 2,55 8,80" stroke="#2a6a40" stroke-width="3" fill="none" opacity="0.6"/>
+    <!-- ── Hojas laterales grandes ── -->
+    <!-- Hoja izquierda exterior -->
+    <path d="M-30,20 C-120,0 -220,-20 -280,-80 C-240,-40 -180,-10 -30,20Z"
+          fill="url(#leafGold)" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+    <path d="M-30,20 C-140,-15 -220,-50 -280,-80" stroke="#e8c97e" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <path d="M-100,8 C-160,-18 -220,-45 -265,-72" stroke="#e8c97e" stroke-width="0.4" fill="none" opacity="0.4"/>
 
-    <!-- Pétalos exteriores — capa 1 -->
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-50)" opacity="0.7"/>
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-30)" opacity="0.75"/>
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-10)" opacity="0.8"/>
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(10)"  opacity="0.8"/>
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(30)"  opacity="0.75"/>
-    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(50)"  opacity="0.7"/>
+    <!-- Hoja derecha exterior -->
+    <path d="M30,20 C120,0 220,-20 280,-80 C240,-40 180,-10 30,20Z"
+          fill="url(#leafGold)" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+    <path d="M30,20 C140,-15 220,-50 280,-80" stroke="#e8c97e" stroke-width="0.5" fill="none" opacity="0.6"/>
+    <path d="M100,8 C160,-18 220,-45 265,-72" stroke="#e8c97e" stroke-width="0.4" fill="none" opacity="0.4"/>
 
-    <!-- Pétalos medios — capa 2 -->
-    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(-40)" opacity="0.85"/>
-    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(-20)" opacity="0.9"/>
-    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(0)"   opacity="0.95"/>
-    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(20)"  opacity="0.9"/>
-    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(40)"  opacity="0.85"/>
+    <!-- Hoja izquierda media -->
+    <path d="M-20,10 C-90,-10 -160,-40 -200,-100 C-160,-55 -100,-20 -20,10Z"
+          fill="url(#leafGold)" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+    <path d="M-20,10 C-100,-30 -160,-65 -200,-100" stroke="#e8c97e" stroke-width="0.4" fill="none" opacity="0.5"/>
 
-    <!-- Pétalos internos — capa 3 -->
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(-25)" opacity="0.95"/>
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(-5)"  opacity="1"/>
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(15)"  opacity="0.95"/>
+    <!-- Hoja derecha media -->
+    <path d="M20,10 C90,-10 160,-40 200,-100 C160,-55 100,-20 20,10Z"
+          fill="url(#leafGold)" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+    <path d="M20,10 C100,-30 160,-65 200,-100" stroke="#e8c97e" stroke-width="0.4" fill="none" opacity="0.5"/>
 
-    <!-- Centro dorado -->
-    <circle cx="0" cy="0" r="14" fill="url(#centerBlue)" opacity="0.9"/>
-    <circle cx="0" cy="0" r="8"  fill="#ffe8a0" opacity="0.8"/>
-    <circle cx="0" cy="0" r="4"  fill="#fff5cc" opacity="0.9"/>
+    <!-- ── Pétalos exteriores capa 1 ── -->
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(-50)" opacity="0.75"/>
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(-32)" opacity="0.8"/>
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(-14)" opacity="0.85"/>
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(4)"   opacity="0.88"/>
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(22)"  opacity="0.85"/>
+    <ellipse cx="0" cy="-80" rx="28" ry="90" fill="url(#petalOuter)" stroke="#c9a84c" stroke-width="0.8" transform="rotate(40)"  opacity="0.8"/>
+
+    <!-- Venas pétalos exteriores -->
+    <line x1="0" y1="0" x2="-70" y2="-155" stroke="#e8c97e" stroke-width="0.5" opacity="0.4" transform="rotate(-50)"/>
+    <line x1="0" y1="0" x2="-45" y2="-165" stroke="#e8c97e" stroke-width="0.5" opacity="0.4" transform="rotate(-32)"/>
+    <line x1="0" y1="0" x2="-20" y2="-168" stroke="#e8c97e" stroke-width="0.5" opacity="0.4" transform="rotate(-14)"/>
+    <line x1="0" y1="0" x2="0"   y2="-168" stroke="#e8c97e" stroke-width="0.5" opacity="0.4"/>
+    <line x1="0" y1="0" x2="45"  y2="-158" stroke="#e8c97e" stroke-width="0.5" opacity="0.4" transform="rotate(22)"/>
+
+    <!-- ── Pétalos medios capa 2 ── -->
+    <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#petalInner)" stroke="#e8c97e" stroke-width="0.7" transform="rotate(-40)" opacity="0.88"/>
+    <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#petalInner)" stroke="#e8c97e" stroke-width="0.7" transform="rotate(-22)" opacity="0.92"/>
+    <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#petalInner)" stroke="#e8c97e" stroke-width="0.7" transform="rotate(-4)"  opacity="0.95"/>
+    <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#petalInner)" stroke="#e8c97e" stroke-width="0.7" transform="rotate(14)"  opacity="0.93"/>
+    <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#petalInner)" stroke="#e8c97e" stroke-width="0.7" transform="rotate(32)"  opacity="0.88"/>
+
+    <!-- ── Pétalos internos capa 3 ── -->
+    <ellipse cx="0" cy="-45" rx="16" ry="52" fill="url(#petalInner)" stroke="#f0d878" stroke-width="0.6" transform="rotate(-28)" opacity="0.95"/>
+    <ellipse cx="0" cy="-45" rx="16" ry="52" fill="url(#petalInner)" stroke="#f0d878" stroke-width="0.6" transform="rotate(-10)" opacity="1"/>
+    <ellipse cx="0" cy="-45" rx="16" ry="52" fill="url(#petalInner)" stroke="#f0d878" stroke-width="0.6" transform="rotate(8)"   opacity="0.97"/>
+    <ellipse cx="0" cy="-45" rx="16" ry="52" fill="url(#petalInner)" stroke="#f0d878" stroke-width="0.6" transform="rotate(26)"  opacity="0.93"/>
+
+    <!-- ── Pétalos más internos capa 4 ── -->
+    <ellipse cx="0" cy="-32" rx="11" ry="36" fill="url(#petalInner)" stroke="#f5e098" stroke-width="0.5" transform="rotate(-18)" opacity="1"/>
+    <ellipse cx="0" cy="-32" rx="11" ry="36" fill="url(#petalInner)" stroke="#f5e098" stroke-width="0.5" transform="rotate(0)"   opacity="1"/>
+    <ellipse cx="0" cy="-32" rx="11" ry="36" fill="url(#petalInner)" stroke="#f5e098" stroke-width="0.5" transform="rotate(18)"  opacity="1"/>
+
+    <!-- ── Centro dorado ── -->
+    <circle cx="0" cy="0" r="28" fill="url(#centerGold)" filter="url(#innerGlow)" opacity="0.95"/>
+    <circle cx="0" cy="0" r="20" fill="#f5d060" opacity="0.7"/>
+    <circle cx="0" cy="0" r="13" fill="#fffbe0" opacity="0.8"/>
+    <!-- Puntitos dorados del centro -->
+    <circle cx="0"   cy="-8"  r="2" fill="#c9a84c" opacity="0.6"/>
+    <circle cx="7"   cy="-4"  r="2" fill="#c9a84c" opacity="0.6"/>
+    <circle cx="7"   cy="4"   r="2" fill="#c9a84c" opacity="0.6"/>
+    <circle cx="0"   cy="8"   r="2" fill="#c9a84c" opacity="0.6"/>
+    <circle cx="-7"  cy="4"   r="2" fill="#c9a84c" opacity="0.6"/>
+    <circle cx="-7"  cy="-4"  r="2" fill="#c9a84c" opacity="0.6"/>
+
+    <!-- ── Reflejo en el agua ── -->
+    <g transform="scale(1,-0.35) translate(0,10)" opacity="0.3">
+      <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#reflectGrad)" transform="rotate(-22)"/>
+      <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#reflectGrad)" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-62" rx="22" ry="72" fill="url(#reflectGrad)" transform="rotate(22)"/>
+      <path d="M-280,-80 C-180,-30 -80,15 0,20 C80,15 180,-30 280,-80"
+            fill="url(#reflectGrad)" opacity="0.5"/>
+    </g>
+
   </g>
 
-  <!-- ══════════════════════════════
-       LOTO MEDIANO — esquina inferior izquierda
-  ══════════════════════════════ -->
-  <g transform="translate(200, 720)" filter="url(#glow)">
-    <!-- Hoja -->
-    <ellipse cx="30" cy="55" rx="90" ry="40" fill="url(#leafGrad)" opacity="0.6"/>
-    <path d="M30,55 L110,38" stroke="#3a8a50" stroke-width="0.7" opacity="0.3"/>
-    <path d="M30,55 L-50,42" stroke="#3a8a50" stroke-width="0.7" opacity="0.3"/>
-
-    <!-- Tallo -->
-    <path d="M0,0 C-3,22 1,38 4,55" stroke="#2a6a40" stroke-width="2.5" fill="none" opacity="0.55"/>
-
-    <!-- Pétalos exteriores -->
-    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(-45)" opacity="0.65"/>
-    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(-22)" opacity="0.7"/>
-    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(0)"   opacity="0.72"/>
-    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(22)"  opacity="0.7"/>
-    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(45)"  opacity="0.65"/>
-
-    <!-- Pétalos medios -->
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(-30)" opacity="0.82"/>
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(-8)"  opacity="0.88"/>
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(15)"  opacity="0.85"/>
-    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(38)"  opacity="0.8"/>
-
-    <!-- Pétalos internos -->
-    <ellipse cx="0" cy="-16" rx="6"  ry="19" fill="url(#petalBlue3)" transform="rotate(-15)" opacity="0.92"/>
-    <ellipse cx="0" cy="-16" rx="6"  ry="19" fill="url(#petalBlue3)" transform="rotate(10)"  opacity="0.95"/>
-
-    <!-- Centro -->
-    <circle cx="0" cy="0" r="10" fill="url(#centerBlue)" opacity="0.85"/>
-    <circle cx="0" cy="0" r="6"  fill="#ffe8a0" opacity="0.75"/>
-    <circle cx="0" cy="0" r="3"  fill="#fff5cc" opacity="0.85"/>
-  </g>
-
-  <!-- ══════════════════════════════
-       LOTO PEQUEÑO — superior izquierda (sutil)
-  ══════════════════════════════ -->
-  <g transform="translate(320, 120)" filter="url(#glow)" opacity="0.7">
-    <path d="M0,0 C-2,18 1,30 3,42" stroke="#2a6a40" stroke-width="2" fill="none" opacity="0.4"/>
-
-    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(-40)" opacity="0.6"/>
-    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(-18)" opacity="0.65"/>
-    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(5)"   opacity="0.68"/>
-    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(28)"  opacity="0.63"/>
-    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(50)"  opacity="0.58"/>
-
-    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(-22)" opacity="0.78"/>
-    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(5)"   opacity="0.82"/>
-    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(30)"  opacity="0.76"/>
-
-    <ellipse cx="0" cy="-11" rx="4" ry="13" fill="url(#petalBlue3)" transform="rotate(-10)" opacity="0.88"/>
-    <ellipse cx="0" cy="-11" rx="4" ry="13" fill="url(#petalBlue3)" transform="rotate(15)"  opacity="0.9"/>
-
-    <circle cx="0" cy="0" r="7" fill="url(#centerBlue)" opacity="0.8"/>
-    <circle cx="0" cy="0" r="4" fill="#ffe8a0" opacity="0.7"/>
-  </g>
-
-  <!-- ══ Partículas de luz flotando ══ -->
-  <circle cx="1060" cy="420" r="2.5" fill="#a8d8f0" opacity="0.5"/>
-  <circle cx="1180" cy="350" r="1.8" fill="#7bbfe0" opacity="0.45"/>
-  <circle cx="950"  cy="490" r="2"   fill="#a8d8f0" opacity="0.4"/>
-  <circle cx="280"  cy="650" r="2"   fill="#7bbfe0" opacity="0.4"/>
-  <circle cx="150"  cy="590" r="1.5" fill="#a8d8f0" opacity="0.35"/>
-  <circle cx="380"  cy="80"  r="1.8" fill="#7bbfe0" opacity="0.38"/>
-  <circle cx="260"  cy="200" r="1.5" fill="#a8d8f0" opacity="0.32"/>
+  <!-- Brillo central sutil -->
+  <radialGradient id="centerLight" cx="50%" cy="53%" r="18%">
+    <stop offset="0%"   stop-color="#e8c97e" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#e8c97e" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1440" height="900" fill="url(#centerLight)"/>
 
 </svg>
+
 
 
 
