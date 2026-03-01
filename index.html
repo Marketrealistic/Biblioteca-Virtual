@@ -36,7 +36,7 @@
     100% { transform:translateY(-20px) translateX(20px); opacity:0; }
   }
 
-  /* MUSIC PANEL */
+  /* MUSIC PANEL — desktop */
   #panelMusica {
     position:fixed; top:20px; right:20px;
     display:flex; flex-direction:column; align-items:center; gap:8px;
@@ -66,6 +66,37 @@
   #botonMusica:hover { background:rgba(201,168,76,0.25); transform:scale(1.1); }
   #volumenControl { display:none; width:110px; accent-color:var(--gold); }
 
+  /* HAMBURGER BUTTON — solo móvil */
+  .hamburger {
+    display:none;
+    position:fixed; top:16px; left:16px;
+    width:42px; height:42px;
+    background:linear-gradient(145deg,#2a1a0a,#1a0f05);
+    border:1px solid rgba(201,168,76,0.35);
+    border-radius:10px; cursor:pointer;
+    flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    z-index:1100; box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    transition:all 0.3s;
+  }
+  .hamburger span {
+    display:block; width:20px; height:2px;
+    background:var(--gold-light); border-radius:2px;
+    transition:all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* OVERLAY oscuro detrás del sidebar en móvil */
+  .sidebar-overlay {
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:999;
+    opacity:0; transition:opacity 0.3s;
+  }
+  .sidebar-overlay.visible { opacity:1; }
+
   /* LAYOUT */
   .wrapper { position:relative; z-index:1; display:flex; min-height:100vh; }
 
@@ -76,6 +107,7 @@
     border-right:1px solid rgba(201,168,76,0.2);
     display:flex; flex-direction:column;
     position:sticky; top:0; height:100vh; overflow-y:auto; flex-shrink:0;
+    transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
   }
   .sidebar-header { padding:36px 24px 26px; border-bottom:1px solid rgba(201,168,76,0.15); text-align:center; }
   .sidebar-logo {
@@ -104,7 +136,7 @@
   .sidebar-footer { padding:18px 24px; border-top:1px solid rgba(201,168,76,0.1); text-align:center; }
   .sidebar-footer p { font-size:11px; color:rgba(201,168,76,0.3); font-style:italic; }
 
-  /* MAIN — fondo crema limpio por defecto */
+  /* MAIN */
   .main {
     flex:1; min-height:100vh; position:relative;
     background:
@@ -113,37 +145,29 @@
       var(--cream);
     background-attachment: fixed;
   }
-
-  /* Textura papel sutil */
   .main::before {
     content:''; position:fixed; inset:0;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
     pointer-events:none; z-index:0;
   }
 
-  /* Fondo Loto — aparece solo al seleccionar categoría */
+  /* Fondo Loto */
   .loto-bg {
-    position:absolute;
-    inset:0;
+    position:absolute; inset:0;
     background-image: url('Fondo/Loto.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
     opacity: 0;
     transition: opacity 1s ease;
     pointer-events: none;
     z-index: 0;
   }
-  /* Overlay suave para que el loto no tape el contenido */
   .loto-bg::after {
-    content:'';
-    position:absolute; inset:0;
+    content:''; position:absolute; inset:0;
     background: rgba(245,239,228,0.80);
   }
-  .loto-bg.visible {
-    opacity: 1;
-  }
+  .loto-bg.visible { opacity: 1; }
 
   .main-inner { position:relative; z-index:1; padding:50px 55px; max-width:1100px; }
 
@@ -227,14 +251,36 @@
   ::-webkit-scrollbar-track { background:#1a0f05; }
   ::-webkit-scrollbar-thumb { background:rgba(201,168,76,0.3); border-radius:3px; }
 
-  /* Solo ocultar sidebar en móvil pequeño */
+  /* ══ MÓVIL ══ */
   @media (max-width:480px) {
-    .sidebar { display:none; }
-    .main-inner { padding:28px 20px; }
-    .books-grid { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
-    .quote-section { padding:32px 24px; }
+    /* Mostrar hamburguesa */
+    .hamburger { display:flex; }
+    .sidebar-overlay { display:block; }
+
+    /* Sidebar fuera de pantalla por defecto */
+    .sidebar {
+      position:fixed;
+      top:0; left:0;
+      height:100vh;
+      transform:translateX(-100%);
+      z-index:1000;
+    }
+    /* Sidebar visible al abrir */
+    .sidebar.open { transform:translateX(0); }
+
+    .main-inner { padding:70px 20px 100px; }
+    .books-grid { grid-template-columns:repeat(2,1fr); gap:14px; }
+    .quote-section { padding:32px 20px; }
     .quote-deco { display:none; }
-    #panelMusica { position:fixed; bottom:0; top:auto; right:0; left:0; flex-direction:row; justify-content:center; border-radius:14px 14px 0 0; animation:none; padding:10px 16px; gap:14px; }
+    .hero-title { font-size:32px; }
+
+    /* Panel música abajo en móvil */
+    #panelMusica {
+      position:fixed; bottom:0; top:auto; right:0; left:0;
+      flex-direction:row; justify-content:center;
+      border-radius:14px 14px 0 0; animation:none;
+      padding:10px 16px; gap:14px;
+    }
     #botonMusica { display:flex !important; }
     #volumenControl { display:block !important; width:100px; }
   }
@@ -248,6 +294,16 @@
 
 <div id="particles"></div>
 
+<!-- Botón hamburguesa (solo móvil) -->
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- Overlay oscuro detrás del sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
 <div id="panelMusica">
   <div class="music-label">♪ Ambiente</div>
   <button id="inicioMusica" onclick="iniciarMusica()">🎵 ¡Escúchame!</button>
@@ -257,7 +313,7 @@
 
 <div class="wrapper">
 
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <a href="index.html"><img class="sidebar-logo" src="Fondo/Escuela.png" alt="Logo" onerror="this.style.display='none'"></a>
       <span class="sidebar-ornament">✦</span>
@@ -291,11 +347,8 @@
     <div class="sidebar-footer"><p>El conocimiento es luz interior</p></div>
   </aside>
 
-  <main class="main" id="mainArea">
-
-    <!-- Fondo Loto: aparece solo al seleccionar categoría -->
+  <main class="main">
     <div class="loto-bg" id="lotoBg"></div>
-
     <div class="main-inner">
 
       <div class="hero">
@@ -397,6 +450,17 @@
   }
   function cambiarVolumen() { audio.volume = volumenControl.value; }
 
+  // Hamburguesa
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const hamburger = document.getElementById('hamburger');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+    hamburger.classList.toggle('open');
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+  }
+
   // Búsqueda
   function searchBooks() {
     const q = document.getElementById('searchInput').value.toLowerCase();
@@ -429,25 +493,22 @@
     });
 
     const esGeneral = cat === 'all';
-
-    // Ocultar/mostrar elementos
     document.querySelector('.search-wrap').style.display = esGeneral ? '' : 'none';
     document.querySelector('.hero').style.display = esGeneral ? '' : 'none';
     document.querySelector('.ornamental-divider').style.display = esGeneral ? '' : 'none';
 
-    // Toolbar siempre visible
     const toolbar = document.querySelector('.toolbar');
     toolbar.style.opacity = '1';
     toolbar.style.animation = 'none';
     toolbar.style.display = 'flex';
 
-    // Transición fondo Loto solo en categorías
+    // Fondo Loto
     const lotoBg = document.getElementById('lotoBg');
-    if (esGeneral) {
-      lotoBg.classList.remove('visible');
-    } else {
-      lotoBg.classList.add('visible');
-    }
+    esGeneral ? lotoBg.classList.remove('visible') : lotoBg.classList.add('visible');
+
+    // Cerrar sidebar en móvil al seleccionar categoría
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('open')) toggleSidebar();
   }
 
   // Vista cuadrícula / lista
