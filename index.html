@@ -103,15 +103,33 @@
     animation:fadeIn 0.8s ease 0.4s both;
   }
 
-  /* En pantallas grandes: 3 columnas */
+  /* Tablet: 3 columnas */
   @media(min-width:600px) {
     .cats-grid { grid-template-columns:1fr 1fr 1fr; max-width:700px; margin:0 auto; padding:0 28px 28px; }
     .app-header { padding:50px 40px 36px; }
     .app-logo { width:170px; height:170px; }
     .app-title { font-size:15px; }
   }
+
+  /* Desktop: logo sidebar izquierdo, categorías a la derecha */
   @media(min-width:900px) {
-    .cats-grid { grid-template-columns:repeat(4,1fr); max-width:960px; }
+    .panel-cats { flex-direction:row; align-items:flex-start; padding-bottom:0; }
+    .app-header {
+      width:240px; min-width:240px; flex-shrink:0;
+      flex-direction:column; align-items:center;
+      min-height:100vh; padding:50px 24px 40px;
+      border-bottom:none; border-right:1px solid rgba(201,168,76,0.15);
+      position:sticky; top:0; height:100vh; justify-content:center;
+    }
+    .app-logo { width:130px; height:130px; margin-bottom:20px; }
+    .app-title { font-size:11px; letter-spacing:4px; }
+    .cats-right { flex:1; display:flex; flex-direction:column; padding:40px 36px 60px; overflow-y:auto; }
+    .cats-label { padding:0 0 14px; width:auto; }
+    .cats-grid { grid-template-columns:repeat(4,1fr); max-width:none; margin:0; padding:0; gap:14px; }
+  }
+  @media(min-width:1200px) {
+    .app-header { width:280px; min-width:280px; }
+    .cats-grid { grid-template-columns:repeat(5,1fr); }
   }
 
   .cat-card {
@@ -290,6 +308,7 @@
       <div class="app-quote">Un refugio para el alma que busca</div>
     </div>
 
+    <div class="cats-right">
     <div class="cats-label">✦ &nbsp; Colecciones</div>
 
     <div class="cats-grid">
@@ -311,6 +330,7 @@
       <div class="cat-card" onclick="abrirCategoria('Teosofía','🌌')" style="animation-delay:0.50s"><span class="cat-icon">🌌</span><span class="cat-name">Teosofía</span></div>
       <div class="cat-card" onclick="abrirCategoria('Triguerinho','🌟')" style="animation-delay:0.53s"><span class="cat-icon">🌟</span><span class="cat-name">Triguerinho</span></div>
     </div>
+    </div><!-- /cats-right -->
 
   </div>
 
