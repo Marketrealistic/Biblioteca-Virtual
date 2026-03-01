@@ -26,26 +26,43 @@
   @keyframes floatPanel { from{transform:translateY(0)} to{transform:translateY(-6px)} }
   @keyframes card-in { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
+  /* LOTUS BACKGROUND */
+  #lotusBg {
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    opacity:0.18;
+  }
+  @keyframes sway1 { 0%,100%{transform:rotate(-4deg) translateY(0);} 50%{transform:rotate(4deg) translateY(-8px);} }
+  @keyframes sway2 { 0%,100%{transform:rotate(3deg) translateY(0);} 50%{transform:rotate(-5deg) translateY(-6px);} }
+  @keyframes sway3 { 0%,100%{transform:rotate(-2deg) translateY(0);} 50%{transform:rotate(6deg) translateY(-10px);} }
+  @keyframes petalFloat { 0%,100%{transform:rotate(0deg) scale(1);} 50%{transform:rotate(8deg) scale(1.04);} }
+  @keyframes stemSway { 0%,100%{transform-origin:bottom center; transform:rotate(-3deg);} 50%{transform-origin:bottom center; transform:rotate(3deg);} }
+  .lotus-group-1 { animation:sway1 7s ease-in-out infinite; transform-origin:bottom center; }
+  .lotus-group-2 { animation:sway2 9s ease-in-out infinite; transform-origin:bottom center; }
+  .lotus-group-3 { animation:sway3 11s ease-in-out infinite; transform-origin:bottom center; }
+  .lotus-petal   { animation:petalFloat 5s ease-in-out infinite; transform-origin:center bottom; }
+  .lotus-stem    { animation:stemSway 8s ease-in-out infinite; }
+
+
   /* PARTICLES */
   #particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
   .particle { position:absolute; width:2px; height:2px; background:var(--gold-light); border-radius:50%; opacity:0; animation:float-up linear infinite; }
 
   /* MUSIC PANEL */
   #panelMusica {
-    position:fixed; bottom:24px; left:24px;
-    display:flex; flex-direction:row; align-items:center; gap:10px;
+    position:fixed; bottom:20px; left:20px;
+    display:flex; flex-direction:row; align-items:center; gap:8px;
     background:linear-gradient(145deg,#2a1a0a,#1a0f05);
-    border:1px solid rgba(201,168,76,0.35);
-    padding:12px 18px; border-radius:14px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.4);
-    z-index:1000; animation:floatPanel 3s ease-in-out infinite alternate;
+    border:1px solid rgba(201,168,76,0.3);
+    padding:8px 14px; border-radius:10px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.5);
+    z-index:1000;
   }
-  .music-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; color:rgba(201,168,76,0.45); text-transform:uppercase; }
-  #inicioMusica { padding:8px 16px; font-size:12px; background:linear-gradient(135deg,var(--gold),var(--warm-brown)); color:white; border:none; border-radius:8px; cursor:pointer; font-family:'Cinzel',serif; letter-spacing:1px; box-shadow:0 4px 12px rgba(201,168,76,0.3); transition:transform 0.2s; }
+  .music-label { font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; color:rgba(201,168,76,0.45); text-transform:uppercase; }
+  #inicioMusica { padding:6px 12px; font-size:10px; background:linear-gradient(135deg,var(--gold),var(--warm-brown)); color:white; border:none; border-radius:7px; cursor:pointer; font-family:'Cinzel',serif; letter-spacing:1px; box-shadow:0 3px 10px rgba(201,168,76,0.3); transition:transform 0.2s; }
   #inicioMusica:hover { transform:scale(1.05); }
-  #botonMusica { width:36px; height:36px; border-radius:50%; background:rgba(201,168,76,0.12); color:var(--gold-light); border:1px solid rgba(201,168,76,0.3); font-size:18px; display:none; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
+  #botonMusica { width:28px; height:28px; border-radius:50%; background:rgba(201,168,76,0.12); color:var(--gold-light); border:1px solid rgba(201,168,76,0.3); font-size:14px; display:none; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
   #botonMusica:hover { background:rgba(201,168,76,0.25); }
-  #volumenControl { display:none; width:110px; accent-color:var(--gold); }
+  #volumenControl { display:none; width:80px; accent-color:var(--gold); }
 
   /* ═══════════════════════════════════
      LAYOUT PRINCIPAL — dos paneles
@@ -92,10 +109,11 @@
 
   /* Grid de categorías */
   .cats-label {
-    font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px;
-    color:rgba(201,168,76,0.35); text-transform:uppercase;
+    font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px;
+    color:var(--gold); text-transform:uppercase;
+    text-shadow:0 0 12px rgba(201,168,76,0.6), 0 0 28px rgba(201,168,76,0.3);
     width:100%; padding:24px 28px 10px;
-    animation:fadeIn 0.8s ease 0.3s both;
+    animation:fadeIn 0.8s ease 0.3s both, glow 3s ease-in-out infinite alternate;
   }
   .cats-grid {
     display:grid; grid-template-columns:1fr 1fr;
@@ -279,6 +297,91 @@
 </audio>
 
 <div id="particles"></div>
+
+<!-- LOTUS BACKGROUND SVG -->
+<svg id="lotusBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="petalGrad" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#e8c97e" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.4"/>
+    </radialGradient>
+    <radialGradient id="petalGrad2" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#f0d898" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a07830" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ── GRUPO 1: loto grande esquina inferior izquierda ── -->
+  <g class="lotus-group-1" transform="translate(80, 900)">
+    <!-- Tallo -->
+    <path class="lotus-stem" d="M0,0 C-10,-80 5,-160 -8,-240 C-18,-300 -5,-360 10,-420" stroke="#c9a84c" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <!-- Hojas del tallo -->
+    <path class="lotus-stem" d="M-4,-150 C-40,-170 -70,-150 -80,-120 C-60,-110 -30,-125 -4,-150Z" fill="#8b6340" opacity="0.5"/>
+    <path class="lotus-stem" d="M2,-250 C30,-260 55,-240 60,-210 C40,-205 18,-220 2,-250Z" fill="#8b6340" opacity="0.4"/>
+    <!-- Flor -->
+    <g transform="translate(10,-430)" class="lotus-petal">
+      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(-40)" opacity="0.8"/>
+      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(-20)" opacity="0.85"/>
+      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(0)"  opacity="0.9"/>
+      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(20)" opacity="0.85"/>
+      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(40)" opacity="0.8"/>
+      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(-25)" opacity="0.9"/>
+      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(0)"  opacity="1"/>
+      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(25)" opacity="0.9"/>
+      <circle cx="0" cy="0" r="7" fill="#e8c97e" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- ── GRUPO 2: loto mediano centro-derecha ── -->
+  <g class="lotus-group-2" transform="translate(1280, 900)">
+    <path class="lotus-stem" d="M0,0 C8,-60 -5,-130 12,-200 C20,-250 8,-310 -5,-370" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.5"/>
+    <path class="lotus-stem" d="M6,-110 C35,-125 58,-108 62,-82 C45,-76 22,-90 6,-110Z" fill="#8b6340" opacity="0.45"/>
+    <path class="lotus-stem" d="M-2,-210 C-30,-225 -55,-208 -58,-182 C-40,-176 -18,-190 -2,-210Z" fill="#8b6340" opacity="0.35"/>
+    <g transform="translate(-5,-380)" class="lotus-petal">
+      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(-35)" opacity="0.75"/>
+      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(-15)" opacity="0.8"/>
+      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(5)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(25)" opacity="0.8"/>
+      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(45)" opacity="0.7"/>
+      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(-15)" opacity="0.9"/>
+      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(10)" opacity="0.95"/>
+      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(35)" opacity="0.85"/>
+      <circle cx="0" cy="0" r="5" fill="#e8c97e" opacity="0.65"/>
+    </g>
+  </g>
+
+  <!-- ── GRUPO 3: loto pequeño centro-alto ── -->
+  <g class="lotus-group-3" transform="translate(720, 900)">
+    <path class="lotus-stem" d="M0,0 C-15,-90 10,-180 -5,-280 C-15,-340 0,-400 8,-460" stroke="#c9a84c" stroke-width="1.8" fill="none" opacity="0.35"/>
+    <path class="lotus-stem" d="M-2,-180 C-28,-192 -48,-178 -50,-155 C-34,-150 -14,-163 -2,-180Z" fill="#8b6340" opacity="0.3"/>
+    <g transform="translate(8,-470)" class="lotus-petal">
+      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(-30)" opacity="0.6"/>
+      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(-10)" opacity="0.65"/>
+      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(10)" opacity="0.7"/>
+      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(30)" opacity="0.65"/>
+      <ellipse cx="0" cy="-8"  rx="4" ry="11" fill="url(#petalGrad2)" transform="rotate(-10)" opacity="0.8"/>
+      <ellipse cx="0" cy="-8"  rx="4" ry="11" fill="url(#petalGrad2)" transform="rotate(15)" opacity="0.85"/>
+      <circle cx="0" cy="0" r="4" fill="#e8c97e" opacity="0.55"/>
+    </g>
+  </g>
+
+  <!-- ── Hojas flotantes de agua ── -->
+  <g class="lotus-group-1" transform="translate(120,820)" opacity="0.4">
+    <ellipse cx="0" cy="0" rx="55" ry="30" fill="#5a3a18" opacity="0.5"/>
+    <line x1="-50" y1="5" x2="50" y2="-5" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+    <line x1="0" y1="-28" x2="5" y2="28" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+  </g>
+  <g class="lotus-group-2" transform="translate(1300,840)" opacity="0.35">
+    <ellipse cx="0" cy="0" rx="45" ry="24" fill="#5a3a18" opacity="0.45"/>
+    <line x1="-40" y1="3" x2="40" y2="-3" stroke="#c9a84c" stroke-width="1" opacity="0.35"/>
+    <line x1="0" y1="-22" x2="3" y2="22" stroke="#c9a84c" stroke-width="0.8" opacity="0.25"/>
+  </g>
+  <g class="lotus-group-3" transform="translate(650,860)" opacity="0.25">
+    <ellipse cx="0" cy="0" rx="38" ry="20" fill="#5a3a18" opacity="0.4"/>
+    <line x1="-35" y1="2" x2="35" y2="-2" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+  </g>
+</svg>
+
 
 <!-- PANEL MÚSICA DESKTOP -->
 <div id="panelMusica">
