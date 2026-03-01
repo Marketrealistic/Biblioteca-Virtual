@@ -26,46 +26,9 @@
   @keyframes floatPanel { from{transform:translateY(0)} to{transform:translateY(-6px)} }
   @keyframes card-in { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-  /* CHERRY BLOSSOM */
-  #cherryBg { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-  @keyframes petalDrop {
-    0%   { transform:translateY(0) rotate(0deg) translateX(0); opacity:0.8; }
-    25%  { transform:translateY(120px) rotate(45deg) translateX(-20px); opacity:0.7; }
-    50%  { transform:translateY(260px) rotate(100deg) translateX(15px); opacity:0.5; }
-    75%  { transform:translateY(400px) rotate(160deg) translateX(-10px); opacity:0.3; }
-    100% { transform:translateY(560px) rotate(220deg) translateX(5px); opacity:0; }
-  }
-  @keyframes branchSway {
-    0%,100% { transform-origin:right bottom; transform:rotate(0deg); }
-    50%      { transform-origin:right bottom; transform:rotate(1.5deg); }
-  }
-  @keyframes flowerSway {
-    0%,100% { transform:rotate(-2deg) scale(1); }
-    50%      { transform:rotate(2deg) scale(1.03); }
-  }
-  .cherry-branch { animation:branchSway 8s ease-in-out infinite; }
-  .cherry-flower { animation:flowerSway 5s ease-in-out infinite; transform-origin:center; }
-  .cherry-flower:nth-child(2n)  { animation-duration:6.5s; animation-delay:0.8s; }
-  .cherry-flower:nth-child(3n)  { animation-duration:7s;   animation-delay:1.4s; }
-  .cherry-flower:nth-child(4n)  { animation-duration:5.5s; animation-delay:0.4s; }
-  .falling-petal { position:absolute; animation:petalDrop linear infinite; opacity:0; }
 
 
-  /* LOTUS BACKGROUND */
-  #lotusBg {
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    opacity:0.18;
-  }
-  @keyframes sway1 { 0%,100%{transform:rotate(-4deg) translateY(0);} 50%{transform:rotate(4deg) translateY(-8px);} }
-  @keyframes sway2 { 0%,100%{transform:rotate(3deg) translateY(0);} 50%{transform:rotate(-5deg) translateY(-6px);} }
-  @keyframes sway3 { 0%,100%{transform:rotate(-2deg) translateY(0);} 50%{transform:rotate(6deg) translateY(-10px);} }
-  @keyframes petalFloat { 0%,100%{transform:rotate(0deg) scale(1);} 50%{transform:rotate(8deg) scale(1.04);} }
-  @keyframes stemSway { 0%,100%{transform-origin:bottom center; transform:rotate(-3deg);} 50%{transform-origin:bottom center; transform:rotate(3deg);} }
-  .lotus-group-1 { animation:sway1 7s ease-in-out infinite; transform-origin:bottom center; }
-  .lotus-group-2 { animation:sway2 9s ease-in-out infinite; transform-origin:bottom center; }
-  .lotus-group-3 { animation:sway3 11s ease-in-out infinite; transform-origin:bottom center; }
-  .lotus-petal   { animation:petalFloat 5s ease-in-out infinite; transform-origin:center bottom; }
-  .lotus-stem    { animation:stemSway 8s ease-in-out infinite; }
+  
 
 
   /* PARTICLES */
@@ -324,90 +287,150 @@
 </audio>
 
 <div id="particles"></div>
-
-<!-- LOTUS BACKGROUND SVG -->
-<svg id="lotusBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+<!-- BLUE LOTUS SVG -->
+<svg id="lotusBg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;opacity:0.22;">
   <defs>
-    <radialGradient id="petalGrad" cx="50%" cy="60%" r="50%">
-      <stop offset="0%" stop-color="#e8c97e" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.4"/>
+    <radialGradient id="petalBlue" cx="50%" cy="70%" r="55%">
+      <stop offset="0%" stop-color="#a8d8f0" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#5ba3cc" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1a4a7a" stop-opacity="0.6"/>
     </radialGradient>
-    <radialGradient id="petalGrad2" cx="50%" cy="60%" r="50%">
-      <stop offset="0%" stop-color="#f0d898" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#a07830" stop-opacity="0.3"/>
+    <radialGradient id="petalBlue2" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#d0eeff" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#7bbfe0" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#2a6090" stop-opacity="0.5"/>
     </radialGradient>
+    <radialGradient id="petalBlue3" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#e8f6ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#4a90c0" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="centerBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe8a0" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#c9a84c" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b6340" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="leafGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a5a3a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3a28" stop-opacity="0.4"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
-  <!-- ── GRUPO 1: loto grande esquina inferior izquierda ── -->
-  <g class="lotus-group-1" transform="translate(80, 900)">
+  <!-- ══════════════════════════════
+       LOTO GRANDE — centro derecha
+  ══════════════════════════════ -->
+  <g transform="translate(1100, 580)" filter="url(#glow)">
+    <!-- Hoja de agua grande -->
+    <ellipse cx="60" cy="80" rx="120" ry="55" fill="url(#leafGrad)" opacity="0.7"/>
+    <path d="M60,80 C60,20 62,22 60,80" stroke="#3a8a50" stroke-width="1" fill="none" opacity="0.4"/>
+    <!-- Venas de la hoja -->
+    <path d="M60,80 L160,55" stroke="#3a8a50" stroke-width="0.8" opacity="0.35"/>
+    <path d="M60,80 L-40,60" stroke="#3a8a50" stroke-width="0.8" opacity="0.35"/>
+    <path d="M60,80 L130,95" stroke="#3a8a50" stroke-width="0.6" opacity="0.3"/>
+    <path d="M60,80 L-10,100" stroke="#3a8a50" stroke-width="0.6" opacity="0.3"/>
+
     <!-- Tallo -->
-    <path class="lotus-stem" d="M0,0 C-10,-80 5,-160 -8,-240 C-18,-300 -5,-360 10,-420" stroke="#c9a84c" stroke-width="2.5" fill="none" opacity="0.6"/>
-    <!-- Hojas del tallo -->
-    <path class="lotus-stem" d="M-4,-150 C-40,-170 -70,-150 -80,-120 C-60,-110 -30,-125 -4,-150Z" fill="#8b6340" opacity="0.5"/>
-    <path class="lotus-stem" d="M2,-250 C30,-260 55,-240 60,-210 C40,-205 18,-220 2,-250Z" fill="#8b6340" opacity="0.4"/>
-    <!-- Flor -->
-    <g transform="translate(10,-430)" class="lotus-petal">
-      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(-40)" opacity="0.8"/>
-      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(-20)" opacity="0.85"/>
-      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(0)"  opacity="0.9"/>
-      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(20)" opacity="0.85"/>
-      <ellipse cx="0" cy="-18" rx="9" ry="22" fill="url(#petalGrad)" transform="rotate(40)" opacity="0.8"/>
-      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(-25)" opacity="0.9"/>
-      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(0)"  opacity="1"/>
-      <ellipse cx="0" cy="-12" rx="7" ry="17" fill="url(#petalGrad2)" transform="rotate(25)" opacity="0.9"/>
-      <circle cx="0" cy="0" r="7" fill="#e8c97e" opacity="0.7"/>
-    </g>
+    <path d="M0,0 C-5,30 2,55 8,80" stroke="#2a6a40" stroke-width="3" fill="none" opacity="0.6"/>
+
+    <!-- Pétalos exteriores — capa 1 -->
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-50)" opacity="0.7"/>
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-30)" opacity="0.75"/>
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(-10)" opacity="0.8"/>
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(10)"  opacity="0.8"/>
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(30)"  opacity="0.75"/>
+    <ellipse cx="0" cy="-38" rx="14" ry="42" fill="url(#petalBlue)"  transform="rotate(50)"  opacity="0.7"/>
+
+    <!-- Pétalos medios — capa 2 -->
+    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(-40)" opacity="0.85"/>
+    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(-20)" opacity="0.9"/>
+    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(0)"   opacity="0.95"/>
+    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(20)"  opacity="0.9"/>
+    <ellipse cx="0" cy="-30" rx="11" ry="35" fill="url(#petalBlue2)" transform="rotate(40)"  opacity="0.85"/>
+
+    <!-- Pétalos internos — capa 3 -->
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(-25)" opacity="0.95"/>
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(-5)"  opacity="1"/>
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue3)" transform="rotate(15)"  opacity="0.95"/>
+
+    <!-- Centro dorado -->
+    <circle cx="0" cy="0" r="14" fill="url(#centerBlue)" opacity="0.9"/>
+    <circle cx="0" cy="0" r="8"  fill="#ffe8a0" opacity="0.8"/>
+    <circle cx="0" cy="0" r="4"  fill="#fff5cc" opacity="0.9"/>
   </g>
 
-  <!-- ── GRUPO 2: loto mediano centro-derecha ── -->
-  <g class="lotus-group-2" transform="translate(1280, 900)">
-    <path class="lotus-stem" d="M0,0 C8,-60 -5,-130 12,-200 C20,-250 8,-310 -5,-370" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.5"/>
-    <path class="lotus-stem" d="M6,-110 C35,-125 58,-108 62,-82 C45,-76 22,-90 6,-110Z" fill="#8b6340" opacity="0.45"/>
-    <path class="lotus-stem" d="M-2,-210 C-30,-225 -55,-208 -58,-182 C-40,-176 -18,-190 -2,-210Z" fill="#8b6340" opacity="0.35"/>
-    <g transform="translate(-5,-380)" class="lotus-petal">
-      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(-35)" opacity="0.75"/>
-      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(-15)" opacity="0.8"/>
-      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(5)"  opacity="0.85"/>
-      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(25)" opacity="0.8"/>
-      <ellipse cx="0" cy="-14" rx="7" ry="18" fill="url(#petalGrad)" transform="rotate(45)" opacity="0.7"/>
-      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(-15)" opacity="0.9"/>
-      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(10)" opacity="0.95"/>
-      <ellipse cx="0" cy="-10" rx="5" ry="13" fill="url(#petalGrad2)" transform="rotate(35)" opacity="0.85"/>
-      <circle cx="0" cy="0" r="5" fill="#e8c97e" opacity="0.65"/>
-    </g>
+  <!-- ══════════════════════════════
+       LOTO MEDIANO — esquina inferior izquierda
+  ══════════════════════════════ -->
+  <g transform="translate(200, 720)" filter="url(#glow)">
+    <!-- Hoja -->
+    <ellipse cx="30" cy="55" rx="90" ry="40" fill="url(#leafGrad)" opacity="0.6"/>
+    <path d="M30,55 L110,38" stroke="#3a8a50" stroke-width="0.7" opacity="0.3"/>
+    <path d="M30,55 L-50,42" stroke="#3a8a50" stroke-width="0.7" opacity="0.3"/>
+
+    <!-- Tallo -->
+    <path d="M0,0 C-3,22 1,38 4,55" stroke="#2a6a40" stroke-width="2.5" fill="none" opacity="0.55"/>
+
+    <!-- Pétalos exteriores -->
+    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(-45)" opacity="0.65"/>
+    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(-22)" opacity="0.7"/>
+    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(0)"   opacity="0.72"/>
+    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(22)"  opacity="0.7"/>
+    <ellipse cx="0" cy="-28" rx="11" ry="32" fill="url(#petalBlue)"  transform="rotate(45)"  opacity="0.65"/>
+
+    <!-- Pétalos medios -->
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(-30)" opacity="0.82"/>
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(-8)"  opacity="0.88"/>
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(15)"  opacity="0.85"/>
+    <ellipse cx="0" cy="-22" rx="8"  ry="26" fill="url(#petalBlue2)" transform="rotate(38)"  opacity="0.8"/>
+
+    <!-- Pétalos internos -->
+    <ellipse cx="0" cy="-16" rx="6"  ry="19" fill="url(#petalBlue3)" transform="rotate(-15)" opacity="0.92"/>
+    <ellipse cx="0" cy="-16" rx="6"  ry="19" fill="url(#petalBlue3)" transform="rotate(10)"  opacity="0.95"/>
+
+    <!-- Centro -->
+    <circle cx="0" cy="0" r="10" fill="url(#centerBlue)" opacity="0.85"/>
+    <circle cx="0" cy="0" r="6"  fill="#ffe8a0" opacity="0.75"/>
+    <circle cx="0" cy="0" r="3"  fill="#fff5cc" opacity="0.85"/>
   </g>
 
-  <!-- ── GRUPO 3: loto pequeño centro-alto ── -->
-  <g class="lotus-group-3" transform="translate(720, 900)">
-    <path class="lotus-stem" d="M0,0 C-15,-90 10,-180 -5,-280 C-15,-340 0,-400 8,-460" stroke="#c9a84c" stroke-width="1.8" fill="none" opacity="0.35"/>
-    <path class="lotus-stem" d="M-2,-180 C-28,-192 -48,-178 -50,-155 C-34,-150 -14,-163 -2,-180Z" fill="#8b6340" opacity="0.3"/>
-    <g transform="translate(8,-470)" class="lotus-petal">
-      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(-30)" opacity="0.6"/>
-      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(-10)" opacity="0.65"/>
-      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(10)" opacity="0.7"/>
-      <ellipse cx="0" cy="-11" rx="6" ry="15" fill="url(#petalGrad)" transform="rotate(30)" opacity="0.65"/>
-      <ellipse cx="0" cy="-8"  rx="4" ry="11" fill="url(#petalGrad2)" transform="rotate(-10)" opacity="0.8"/>
-      <ellipse cx="0" cy="-8"  rx="4" ry="11" fill="url(#petalGrad2)" transform="rotate(15)" opacity="0.85"/>
-      <circle cx="0" cy="0" r="4" fill="#e8c97e" opacity="0.55"/>
-    </g>
+  <!-- ══════════════════════════════
+       LOTO PEQUEÑO — superior izquierda (sutil)
+  ══════════════════════════════ -->
+  <g transform="translate(320, 120)" filter="url(#glow)" opacity="0.7">
+    <path d="M0,0 C-2,18 1,30 3,42" stroke="#2a6a40" stroke-width="2" fill="none" opacity="0.4"/>
+
+    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(-40)" opacity="0.6"/>
+    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(-18)" opacity="0.65"/>
+    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(5)"   opacity="0.68"/>
+    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(28)"  opacity="0.63"/>
+    <ellipse cx="0" cy="-20" rx="8" ry="24" fill="url(#petalBlue)"  transform="rotate(50)"  opacity="0.58"/>
+
+    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(-22)" opacity="0.78"/>
+    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(5)"   opacity="0.82"/>
+    <ellipse cx="0" cy="-15" rx="6" ry="18" fill="url(#petalBlue2)" transform="rotate(30)"  opacity="0.76"/>
+
+    <ellipse cx="0" cy="-11" rx="4" ry="13" fill="url(#petalBlue3)" transform="rotate(-10)" opacity="0.88"/>
+    <ellipse cx="0" cy="-11" rx="4" ry="13" fill="url(#petalBlue3)" transform="rotate(15)"  opacity="0.9"/>
+
+    <circle cx="0" cy="0" r="7" fill="url(#centerBlue)" opacity="0.8"/>
+    <circle cx="0" cy="0" r="4" fill="#ffe8a0" opacity="0.7"/>
   </g>
 
-  <!-- ── Hojas flotantes de agua ── -->
-  <g class="lotus-group-1" transform="translate(120,820)" opacity="0.4">
-    <ellipse cx="0" cy="0" rx="55" ry="30" fill="#5a3a18" opacity="0.5"/>
-    <line x1="-50" y1="5" x2="50" y2="-5" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-    <line x1="0" y1="-28" x2="5" y2="28" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
-  </g>
-  <g class="lotus-group-2" transform="translate(1300,840)" opacity="0.35">
-    <ellipse cx="0" cy="0" rx="45" ry="24" fill="#5a3a18" opacity="0.45"/>
-    <line x1="-40" y1="3" x2="40" y2="-3" stroke="#c9a84c" stroke-width="1" opacity="0.35"/>
-    <line x1="0" y1="-22" x2="3" y2="22" stroke="#c9a84c" stroke-width="0.8" opacity="0.25"/>
-  </g>
-  <g class="lotus-group-3" transform="translate(650,860)" opacity="0.25">
-    <ellipse cx="0" cy="0" rx="38" ry="20" fill="#5a3a18" opacity="0.4"/>
-    <line x1="-35" y1="2" x2="35" y2="-2" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
-  </g>
+  <!-- ══ Partículas de luz flotando ══ -->
+  <circle cx="1060" cy="420" r="2.5" fill="#a8d8f0" opacity="0.5"/>
+  <circle cx="1180" cy="350" r="1.8" fill="#7bbfe0" opacity="0.45"/>
+  <circle cx="950"  cy="490" r="2"   fill="#a8d8f0" opacity="0.4"/>
+  <circle cx="280"  cy="650" r="2"   fill="#7bbfe0" opacity="0.4"/>
+  <circle cx="150"  cy="590" r="1.5" fill="#a8d8f0" opacity="0.35"/>
+  <circle cx="380"  cy="80"  r="1.8" fill="#7bbfe0" opacity="0.38"/>
+  <circle cx="260"  cy="200" r="1.5" fill="#a8d8f0" opacity="0.32"/>
+
 </svg>
+
+
 
 
 
@@ -538,33 +561,6 @@
   }
 
 
-  // ══ PÉTALOS CAYENDO ══
-  const cherryContainer = document.getElementById('cherryBg');
-  function crearPetalo() {
-    const ns = 'http://www.w3.org/2000/svg';
-    // Crear SVG pequeño flotante
-    const div = document.createElement('div');
-    div.className = 'falling-petal';
-    const startX = 880 + Math.random() * 560; // zona derecha
-    const startY = 0   + Math.random() * 380;
-    const size   = 5   + Math.random() * 7;
-    const dur    = 6   + Math.random() * 8;
-    const delay  = Math.random() * 10;
-    div.style.cssText = `left:${startX}px; top:${startY}px; animation-duration:${dur}s; animation-delay:${delay}s; opacity:0;`;
-    div.innerHTML = `<svg width="${size*2}" height="${size*2}" viewBox="-10 -10 20 20" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(0)"/>
-      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.65" transform="rotate(72)"/>
-      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(144)"/>
-      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.65" transform="rotate(216)"/>
-      <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#c9a84c" opacity="0.7" transform="rotate(288)"/>
-      <circle cx="0" cy="0" r="2.5" fill="#f5e098" opacity="0.8"/>
-    </svg>`;
-    document.body.appendChild(div);
-    setTimeout(() => div.remove(), (dur + delay) * 1000 + 1000);
-  }
-  // Crear pétalos cada 1.5s
-  for(let i = 0; i < 12; i++) setTimeout(crearPetalo, i * 1500);
-  setInterval(crearPetalo, 1500);
 
   // ══════════════════════
   // PARTÍCULAS
