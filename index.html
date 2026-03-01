@@ -168,7 +168,7 @@
   .book-card:hover::before { transform:scaleY(1); }
 
   .book-cover-wrap { width:100%; padding-top:100%; position:relative; overflow:hidden; background:linear-gradient(135deg,#e8dcc8,#d4c5a9); }
- .book-cover-wrap img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform 0.5s; }
+  .book-cover-wrap img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform 0.5s; }
   .book-card:hover .book-cover-wrap img { transform:scale(1.05); }
   .book-cover-placeholder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:48px; opacity:0.4; }
 
@@ -299,7 +299,7 @@
           <div class="book-info">
             <div class="book-title">Gracia y Coraje</div>
             <div class="book-author">Ken Wilber</div>
-            <div class="book-category-tag">Ken Wilber</div>
+            <div class="book-category-tag">Psicología Integral</div>
             <a class="book-btn" href="https://e.pcloud.link/publink/show?code=XZQJ43ZuB9j90ho1L8VgXowljU6d5xgRe1y" target="_blank">Abrir libro</a>
           </div>
         </div>
@@ -314,7 +314,7 @@
           <div class="book-info">
             <div class="book-title">TÍTULO DEL LIBRO</div>
             <div class="book-author">NOMBRE AUTOR</div>
-            <div class="book-category-tag">CATEGORÍA</div>
+            <div class="book-category-tag">GÉNERO O TEMA</div>
             <a class="book-btn" href="URL_DEL_LIBRO" target="_blank">Abrir libro</a>
           </div>
         </div>
@@ -392,10 +392,16 @@
     document.querySelectorAll('.book-card').forEach(card => {
       card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
     });
-    // Mostrar/ocultar buscador
-   document.querySelector('.search-wrap').style.display = cat === 'all' ? '' : 'none';
-document.querySelector('.hero').style.display = cat === 'all' ? '' : 'none';
-document.querySelector('.ornamental-divider').style.display = cat === 'all' ? '' : 'none';
+    // Mostrar/ocultar elementos según categoría
+    const esGeneral = cat === 'all';
+    document.querySelector('.search-wrap').style.display = esGeneral ? '' : 'none';
+    document.querySelector('.hero').style.display = esGeneral ? '' : 'none';
+    document.querySelector('.ornamental-divider').style.display = esGeneral ? '' : 'none';
+    // Toolbar siempre visible
+    const toolbar = document.querySelector('.toolbar');
+    toolbar.style.opacity = '1';
+    toolbar.style.animation = 'none';
+    toolbar.style.display = 'flex';
   }
 
   function setView(mode) {
@@ -407,9 +413,3 @@ document.querySelector('.ornamental-divider').style.display = cat === 'all' ? ''
 </script>
 </body>
 </html>
-
-
-
-
-
-
